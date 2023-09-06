@@ -1,11 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -35,6 +36,8 @@ public class MainPage {
             public static final String DROPDOWN_SEARCH = "//div[@id='search-list-popup']"; //выпадающий список категори1
     public static final String CATEGOTY_ELECTROBOOKS = "#inlinesearch_where_file"; //категория электронные книги
     public static final String CATEGORY_RESULT_EBOOKS = "a.viewed-items-book.file.viewed-items-book-card";
+    public static final String TO_BASKET = "#add_to_cart";
+    public static final String COUNT_BASKET_NOTIFICATION = "/html/body/header/div[2]/div/div[2]/a[2]/span";
     public MainPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -42,7 +45,8 @@ public class MainPage {
 
     public void open() {
         driver.get(index);
-        driver.manage().window().maximize(); // окно в полный размер
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         closePopUp();
     }
 
@@ -52,10 +56,24 @@ public class MainPage {
 
     public void inputSearchInput(String value){
         //ввод поисковой фразы
-        driver.findElement(xpath(SEARCH_INPUT)).click();
+        driver.findElement(xpath(SEARCH_INPUT)).sendKeys(value);
+    }
+    public void timeOutDuration(long sec){
+        driver.manage().timeouts().implicitlyWait(sec, TimeUnit.SECONDS);
+
+    }
+
+
+    public void scrollPage(WebDriver driver, int x, int y) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(" + x + ", " + y + ")");
+    }
 
 
 
+    public void allureScreenshot(String description){
+        Allure.addAttachment(description,
+                new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
     }
     public void clickSearhButton (){
         //нажатие кнопки поиска -лупы
@@ -67,6 +85,10 @@ public class MainPage {
         return resultSearch.size();
 
     }
+    /*public void findElement(By.name, ){
+        driver.findElement(By.cssSelector(CHOICE_CITY_BUTTON)).click();
+
+    }*/
     public void clearSearchInput(){
         driver.findElement(By.xpath(SEARCH_INPUT)).clear();
     }
@@ -76,6 +98,9 @@ public class MainPage {
 
     public void basketBtnClick(){
         driver.findElement(By.xpath(BASKET_BTN)).click();
+    }
+    public void addToBasket(){
+        driver.findElement(By.cssSelector(TO_BASKET)).click();
     }
 
 }

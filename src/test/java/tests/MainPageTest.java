@@ -26,7 +26,7 @@ public class MainPageTest  {
 
     @BeforeEach
 
-    public  void setUp() {
+    public void setUp() {
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
         mainPage.open();
@@ -49,7 +49,6 @@ public class MainPageTest  {
         choiceCity();
         driver.findElement(By.cssSelector(CHANGE_BUTTON_CITY)).click(); //кнопка изменить
         driver.findElement(By.cssSelector(DROPDOWN_CITIES)).click(); // выпадающий список
-
         driver.findElement(By.xpath(CITY_LOCATION)).click();
         WebElement selectElement = driver.findElement(By.xpath(RUSSIA_CITIES_CHANGE));
         Select select = new Select(selectElement);
@@ -64,8 +63,7 @@ public class MainPageTest  {
         driver.findElement(By.xpath(HELP_BTN)).click();
         String helpTitle = driver.getTitle();
         System.out.println(helpTitle);
-        Allure.addAttachment("Открылась страница Справки",
-                new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+        mainPage.allureScreenshot("Открылась страница Справки");
         assert helpTitle.contains("Справка") : "Страница Справки не открылась";
     }
 
@@ -76,9 +74,7 @@ public class MainPageTest  {
         mainPage.registrationBtnClick();
         String regTitle = driver.getTitle();
         System.out.println(regTitle);
-        Allure.addAttachment("Открылась страница регистрации",
-                new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-
+        mainPage.allureScreenshot("Открылась страница регистрации");
         assert  regTitle.contains("Вход") : "Страница Входа не открылась";
 
     }
@@ -91,13 +87,12 @@ public class MainPageTest  {
 */
         String cart= driver.findElement(By.xpath("//h1[contains(text(),'Корзина')]")).getText();
 
-        Allure.addAttachment("Открылась страница корзины",
-                new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+        mainPage.allureScreenshot("Открылась страница корзины");
         assertEquals(cart, "Корзина");
 
     }
     @AfterEach
-   void tearDown() {
+   public void tearDown() {
         driver.quit();
     }
 }
