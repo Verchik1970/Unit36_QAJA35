@@ -30,6 +30,7 @@ public class BasketPage {
     public static By PLACE_ORDER_BTN = By.cssSelector("a.button.button-in-cart.check_price_btn");
     public static By PAGE_ORDER_INFO = By.xpath("/html/body/div[1]/div/main/div[1]/div/a[1]");
 
+    public static By ITEM_TITLE = By.cssSelector(" a.custom-link.book-catalog_item_title ");
     public void addToCartItems(String value) {
         mainPage.inputSearchInput(value);
         mainPage.clickSearhButton();

@@ -13,6 +13,7 @@ import pages.MainPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.openqa.selenium.By.xpath;
 import static pages.BasketPage.*;
 import static pages.MainPage.*;
 
@@ -133,6 +134,22 @@ public class AddToBasketTest {
         String order = driver.findElement(PAGE_ORDER_INFO).getText();
         System.out.println(order);
         assertEquals("Оформление заказа /", order);
+    }
+
+    @Test
+    @DisplayName("Тест проверят, что найденные товары соответствуют искомой фразе")
+    public void itemTitleAssert() {
+        mainPage.inputSearchInput(value);
+        mainPage.clickSearhButton();
+        mainPage.allureScreenshot("ВВод тестового слова");
+        mainPage.timeOutDuration(5);
+        String title = driver.findElement(ITEM_TITLE).getText();
+        mainPage.allureScreenshot("Найденные книги");
+
+        System.out.println(title + " " + ", a искомая книга " + value);
+        assertEquals(title, value);
+
+
     }
 
     @AfterEach

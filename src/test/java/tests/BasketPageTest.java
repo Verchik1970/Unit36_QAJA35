@@ -39,4 +39,8 @@ public class BasketPageTest {
         assertEquals("Введите DISCODe:", discountInput);
 
     }
+    @AfterEach
+    void tearDown() {
+        driver.quit();
+    }
 }

@@ -61,7 +61,6 @@ public class MainPage {
     }
 
     public void inputSearchInput(String value) {
-        //ввод поисковой фразы
         driver.findElement(SEARCH_INPUT).sendKeys(value);
     }
 
@@ -71,7 +70,7 @@ public class MainPage {
     }
 
 
-    public void scrollPage(WebDriver driver, int x, int y) {
+    public void scrollPage(WebDriver driver, int x, int y) {//скролл вверх страницы
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(" + x + ", " + y + ")");
     }
@@ -94,10 +93,6 @@ public class MainPage {
 
     }
 
-    /*public void findElement(By.name, ){
-        driver.findElement(By.cssSelector(CHOICE_CITY_BUTTON)).click();
-
-    }*/
     public void clearSearchInput() {
         driver.findElement(SEARCH_INPUT).clear();
     }
