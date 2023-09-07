@@ -10,41 +10,42 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.net.URL;
-import static org.openqa.selenium.By.xpath;
+
+import static org.openqa.selenium.By.*;
 
 public class MainPage {
     public static WebDriver driver;
 
     final String index = "https://books.ru/";
 
-    final String popUpCloseButton = "//div[@class='closeX']";
-
-    public static final String SEARCH_INPUT = "//header/div[2]/div[1]/div[1]/form[1]/input[2]"; //поле ввода
-    public static final String SEARCH_BUTTON_HEADER = "//header/div[2]/div[1]/div[1]/form[1]/button[1]"; //кнопка лупа
-    private static final String SEARCH_RESULT_COUNT = "//body/div[1]/div[1]/main[1]/div[3]/div[1]/div[1]";
-    public static final String ERROR_FOUND_ITEMS = "p.p.search-result > b:nth-child(2)";
-    private static final String REGISTRATION_BTN = "//header/div[2]/div[1]/div[2]/a[1]";
-    private static final String BASKET_BTN = "//header/div[2]/div[1]/div[2]/a[2]";
-    public static final String CHOICE_CITY_BUTTON = "a.link-icon.link-icon-region.header_nav-top_item";
-    public static final String REGION_NAME = "//label[contains(text(),'Мой регион:')]";
+    public static final By popUpCloseButton = By.xpath("//div[@class='closeX']");
+    /*final String popUpCloseButton = ;*/
+    public static final By SEARCH_INPUT = By.xpath("//header/div[2]/div[1]/div[1]/form[1]/input[2]");
+    public static final By SEARCH_BUTTON_HEADER = By.xpath("//header/div[2]/div[1]/div[1]/form[1]/button[1]"); //кнопка лупа
+    public static final By SEARCH_RESULT_COUNT = By.xpath("//body/div[1]/div[1]/main[1]/div[3]/div[1]/div[1]");
+    public static final By ERROR_FOUND_ITEMS = By.cssSelector("p.p.search-result > b:nth-child(2)");
+    public static final By REGISTRATION_BTN = By.xpath("//header/div[2]/div[1]/div[2]/a[1]");
+    public static final By BASKET_BTN = By.xpath("//header/div[2]/div[1]/div[2]/a[2]");
+    public static final By CHOICE_CITY_BUTTON = By.cssSelector("a.link-icon.link-icon-region.header_nav-top_item");
+    public static final By REGION_NAME = By.xpath("//label[contains(text(),'Мой регион:')]");
     public static final String myRegion = "Мой регион";
-    public static final String CHANGE_BUTTON_CITY = "#header_mainregion_trigger"; //выбор изменить
-    public static final String DROPDOWN_CITIES = "#header_mainregion_other"; //открытие списка
-    public static final String CITY_LOCATION = "//option[contains(text(),'Россия')]"; //Россия //*[@id="header_mainregion_other"]/option[4]
-    public static final String RUSSIA_CITIES_CHANGE = "//select[@id='header_mainregion_other2']"; // алтай //*[@id="header_mainregion_other2"]/option[8]
-    public static final String ALTAY_REGION = "/html/body/header/div[1]/nav/div/a";
+    public static final By CHANGE_BUTTON_CITY = By.cssSelector("#header_mainregion_trigger"); //выбор изменить
+    public static final By DROPDOWN_CITIES = By.cssSelector("#header_mainregion_other"); //открытие списка
+    public static final By CITY_LOCATION = By.xpath("//option[contains(text(),'Россия')]"); //Россия //*[@id="header_mainregion_other"]/option[4]
+    public static final By RUSSIA_CITIES_CHANGE = By.xpath("//select[@id='header_mainregion_other2']"); // алтай //*[@id="header_mainregion_other2"]/option[8]
+    public static final By ALTAY_REGION = By.xpath("/html/body/header/div[1]/nav/div/a");
     public static final String test_city_value = "Россия, Алтай";
-    public static final String HELP_BTN = "//header/div[1]/nav[1]/a[2]"; //div[@id='search-list-popup']
-    public static final String DROPDOWN_CATEGORY_SEARCH = "a.header_search-filter.everywhere:nth-child(1)"; //кнопка выпадающего списка
-    public static final String DROPDOWN_SEARCH = "//div[@id='search-list-popup']"; //выпадающий список категори1
-    public static final String CATEGOTY_ELECTROBOOKS = "#inlinesearch_where_file"; //категория электронные книги
-    public static final String CATEGORY_RESULT_EBOOKS = "a.viewed-items-book.file.viewed-items-book-card";
-    public static final String TO_BASKET = "#add_to_cart";
-    public static final String COUNT_BASKET_NOTIFICATION = "/html/body/header/div[2]/div/div[2]/a[2]/span";
-    public static final String LINK_OLD_SITE = "//a[@id='link_old_site']"; // переход на старый сайт
+    public static final By HELP_BTN = By.xpath("//header/div[1]/nav[1]/a[2]"); //div[@id='search-list-popup']
+    public static final By DROPDOWN_CATEGORY_SEARCH = By.cssSelector("a.header_search-filter.everywhere:nth-child(1)"); //кнопка выпадающего списка
+    public static final By DROPDOWN_SEARCH = By.xpath("//div[@id='search-list-popup']"); //выпадающий список категори1
+    public static final By CATEGOTY_ELECTROBOOKS = By.cssSelector("#inlinesearch_where_file"); //категория электронные книги
+    public static final By CATEGORY_RESULT_EBOOKS = By.cssSelector("a.viewed-items-book.file.viewed-items-book-card");
+    public static final By TO_BASKET = By.cssSelector("#add_to_cart");
+    public static final By COUNT_BASKET_NOTIFICATION = By.xpath("/html/body/header/div[2]/div/div[2]/a[2]/span");
+    public static final By LINK_OLD_SITE = By.xpath("//a[@id='link_old_site']"); // переход на старый сайт
 
     public MainPage(WebDriver driver) {
-        this.driver = driver;
+        MainPage.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -56,12 +57,12 @@ public class MainPage {
     }
 
     public void closePopUp() {
-        driver.findElement(By.xpath(popUpCloseButton)).click();
+        driver.findElement(popUpCloseButton).click();
     }
 
     public void inputSearchInput(String value) {
         //ввод поисковой фразы
-        driver.findElement(xpath(SEARCH_INPUT)).sendKeys(value);
+        driver.findElement(SEARCH_INPUT).sendKeys(value);
     }
 
     public void timeOutDuration(long sec) {
@@ -83,12 +84,12 @@ public class MainPage {
 
     public void clickSearhButton() {
         //нажатие кнопки поиска-лупы
-        driver.findElement(By.xpath(SEARCH_BUTTON_HEADER)).click();
+        driver.findElement(SEARCH_BUTTON_HEADER).click();
 
     }
 
     public int getResultsCount() {// подсчет количества элементов поиска
-        List<WebElement> resultSearch = driver.findElements(By.xpath(SEARCH_RESULT_COUNT));
+        List<WebElement> resultSearch = driver.findElements(SEARCH_RESULT_COUNT);
         return resultSearch.size();
 
     }
@@ -98,19 +99,19 @@ public class MainPage {
 
     }*/
     public void clearSearchInput() {
-        driver.findElement(By.xpath(SEARCH_INPUT)).clear();
+        driver.findElement(SEARCH_INPUT).clear();
     }
 
     public void registrationBtnClick() {
-        driver.findElement(By.xpath(REGISTRATION_BTN)).click();
+        driver.findElement(REGISTRATION_BTN).click();
     }
 
     public void basketBtnClick() {
-        driver.findElement(By.xpath(BASKET_BTN)).click();
+        driver.findElement(BASKET_BTN).click();
     }
 
     public void addToBasket() {
-        driver.findElement(By.cssSelector(TO_BASKET)).click();
+        driver.findElement(TO_BASKET).click();
     }
 
 

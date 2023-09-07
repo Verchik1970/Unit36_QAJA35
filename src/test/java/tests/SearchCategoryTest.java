@@ -4,8 +4,11 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.MainPage;
+
 import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.openqa.selenium.By.*;
 import static pages.MainPage.*;
 
 public class SearchCategoryTest {
@@ -29,12 +32,12 @@ public class SearchCategoryTest {
         mainPage.clickSearhButton();
         mainPage.allureScreenshot("ВВод тестового слова");
         mainPage.timeOutDuration(5);
-        driver.findElement(By.cssSelector(DROPDOWN_CATEGORY_SEARCH)).click(); // выпадающий список
-        driver.findElement(By.xpath(DROPDOWN_SEARCH));
-        driver.findElement(By.cssSelector(CATEGOTY_ELECTROBOOKS)).click();
+        driver.findElement(DROPDOWN_CATEGORY_SEARCH).click(); // выпадающий список
+        driver.findElement(DROPDOWN_SEARCH);
+        driver.findElement(CATEGOTY_ELECTROBOOKS).click();
         mainPage.clickSearhButton();
         mainPage.allureScreenshot("Поиск по категории");
-        String result = driver.findElement(By.cssSelector(CATEGORY_RESULT_EBOOKS)).getText();
+        String result = driver.findElement(CATEGORY_RESULT_EBOOKS).getText();
         assertTrue(Objects.equals(result, "электронная книга"), "Категория не нашлась");
 
     }

@@ -42,14 +42,14 @@ public class SearchTest {
     @ParameterizedTest
     @DisplayName("Проверка поиска по невалидным значениям")
     @ValueSource(strings = {"2231273957295", "  416  860  ", ";%??:(*:%:?;%?:(%", "<script>alert(\"Поле input уязвимо!\")</script>"})
-    public void inputInvalidSearchValue(String value)  {
-        driver.findElement(xpath(SEARCH_INPUT)).sendKeys(value);
+    public void inputInvalidSearchValue(String value) {
+        driver.findElement(SEARCH_INPUT).sendKeys(value);
         mainPage.clickSearhButton();
         mainPage.timeOutDuration(10);
-       mainPage.allureScreenshot("ВВод тестового слова");
+        mainPage.allureScreenshot("ВВод тестового слова");
 
         mainPage.clearSearchInput();
-        String error = driver.findElement(By.cssSelector(ERROR_FOUND_ITEMS)).getText();
+        String error = driver.findElement(ERROR_FOUND_ITEMS).getText();
         mainPage.timeOutDuration(10);
         mainPage.allureScreenshot("Ошибка при вводе невалидного значения в поиск");
         assertEquals("0", error, "Поиск товара по невалидным данным происходит.");

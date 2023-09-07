@@ -41,7 +41,7 @@ public class AddToBasketTest {
         mainPage.timeOutDuration(5);
         mainPage.scrollPage(driver, 0, 0);
         mainPage.allureScreenshot("Значок уведомлений");
-        WebElement element = driver.findElement(By.xpath(COUNT_BASKET_NOTIFICATION));
+        WebElement element = driver.findElement(COUNT_BASKET_NOTIFICATION);
         String countText = element.getText().trim();
         System.out.println(countText);
         int count = Integer.parseInt(countText);
@@ -54,7 +54,7 @@ public class AddToBasketTest {
     @DisplayName("Проверка добавления в корзину выбранного товара")
     public void addItemToBasket() {
         basketPage.addToCartItems(value);
-        String name_item_inbasket = driver.findElement(By.className(BOOK_TITLE_IN_BASKET)).getText();
+        String name_item_inbasket = driver.findElement(BOOK_TITLE_IN_BASKET).getText();
         System.out.println(name_item_inbasket);
         assertEquals(value, name_item_inbasket, "Добавлена не та книга");
 
@@ -64,9 +64,9 @@ public class AddToBasketTest {
     @DisplayName("Проверка соответствия количества добавленного товара и значку уведомлений")
     public void countItemInBasket() {
         basketPage.addToCartItems(value);
-        String int_in_cart = driver.findElement(By.id(CART_INT)).getAttribute("value");
-        System.out.println(int_in_cart + " " + "incart");
-        String count_notif = driver.findElement(By.xpath(COUNT_BASKET_NOTIFICATION)).getText();
+        String int_in_cart = driver.findElement(CART_INT).getAttribute("value");
+        System.out.println(int_in_cart + " " + "in cart");
+        String count_notif = driver.findElement(COUNT_BASKET_NOTIFICATION).getText();
         System.out.println(count_notif);
         assertEquals(int_in_cart, count_notif, "Количество товара разное");
 
@@ -77,8 +77,8 @@ public class AddToBasketTest {
     @DisplayName("Проверка что при нажатии на кнопку Очистить корзину - товары удаляются из корзины")
     public void deleteFromBasket() {
         basketPage.addToCartItems(value);
-        driver.findElement(By.cssSelector(DELETE_FROM_CART)).click();
-        String noItems = driver.findElement(By.cssSelector(NO_ITEMS_INTHE_CART)).getText();
+        driver.findElement(DELETE_FROM_CART).click();
+        String noItems = driver.findElement(NO_ITEMS_INTHE_CART).getText();
         assertEquals("В корзине ничего нет.", noItems);
 
 
@@ -88,11 +88,11 @@ public class AddToBasketTest {
     @DisplayName("Проверка правильного отображения суммы в корзине при увеличении количества товаров")
     public void checkSuminBasket() {
         basketPage.addToCartItems(value);
-        int sum1 = basketPage.stringToIntWithSplit(By.cssSelector(SUMMA_IN_CART));
-        basketPage.replaceValue(By.id(CART_INT));
+        int sum1 = basketPage.stringToIntWithSplit(SUMMA_IN_CART);
+        basketPage.replaceValue(CART_INT);
         mainPage.timeOutDuration(2);
-        driver.findElement(By.cssSelector(RECOUNT)).click();
-        int sum2 = basketPage.stringToIntWithSplit(By.cssSelector(SUMMA_IN_CART));
+        driver.findElement(RECOUNT).click();
+        int sum2 = basketPage.stringToIntWithSplit(SUMMA_IN_CART);
         assertEquals(sum1 * 3, sum2, "Итоговая сумма не изменилась ");
     }
 
@@ -100,8 +100,8 @@ public class AddToBasketTest {
     @DisplayName("Проверка возможности отложить товар из корзины")
     public void postponeItems() {
         basketPage.addToCartItems(value);
-        basketPage.clickBTN(By.cssSelector(POSTPONE_BTN));
-        String noItems = driver.findElement(By.cssSelector(NO_ITEMS_INTHE_CART)).getText();
+        basketPage.clickBTN(POSTPONE_BTN);
+        String noItems = driver.findElement(NO_ITEMS_INTHE_CART).getText();
         assertEquals("В корзине ничего нет.", noItems);
     }
 
@@ -109,8 +109,8 @@ public class AddToBasketTest {
     @DisplayName("Проверка что при нажатии на кнопку крестик товары из корзины удалятся")
     public void deleteBtnChoice() {
         basketPage.addToCartItems(value);
-        driver.findElement(By.cssSelector(DELETE_BTN)).click();
-        String noItems = driver.findElement(By.cssSelector(NO_ITEMS_INTHE_CART)).getText();
+        driver.findElement(DELETE_BTN).click();
+        String noItems = driver.findElement(NO_ITEMS_INTHE_CART).getText();
         assertEquals("В корзине ничего нет.", noItems);
 
     }
@@ -119,17 +119,18 @@ public class AddToBasketTest {
     @DisplayName("Проверка при нажатии на кнопку ввести Код - откроется поле для ввода кода скидки")
     public void dicountBtnCheck() {
         basketPage.addToCartItems(value);
-        driver.findElement(By.cssSelector(DISCOUNT_CODE_BTN)).click();
-        String discountInput = driver.findElement(By.cssSelector(DISCOUNT_INPUT)).getText();
+        driver.findElement(DISCOUNT_CODE_BTN).click();
+        String discountInput = driver.findElement(DISCOUNT_INPUT).getText();
         assertEquals("Введите DISCODe:", discountInput);
 
     }
+
     @Test
     @DisplayName("Кнопка Оформить заказ вызывает страницу оформления заказа ")
-    public void placeOrder(){
+    public void placeOrder() {
         basketPage.addToCartItems(value);
-        driver.findElement(By.cssSelector(PLACE_ORDER_BTN)).click();
-        String order = driver.findElement(By.xpath(PAGE_ORDER_INFO)).getText();
+        driver.findElement(PLACE_ORDER_BTN).click();
+        String order = driver.findElement(PAGE_ORDER_INFO).getText();
         System.out.println(order);
         assertEquals("Оформление заказа /", order);
     }
