@@ -10,7 +10,7 @@ import static tests.AddToBasketTest.mainPage;
 
 public class BasketPage {
     public static WebDriver driver;
-
+    public static String value = "Трудно быть богом";
 
     public BasketPage(WebDriver driver) {
         BasketPage.driver = driver;
@@ -22,6 +22,12 @@ public class BasketPage {
     public static String RECOUNT = "button.button.button-order:nth-child(2)";
     public static String POSTPONE_BTN = "a.dotted-link:nth-child(2)";
     public static String NO_ITEMS_INTHE_CART = "div.col_1 ";
+    public static String DELETE_FROM_CART = "a.dotted-link:nth-child(3)";
+    public static String DELETE_BTN = "a.delete-btn";
+    public static String DISCOUNT_CODE_BTN = "#discode-input-trigger";
+    public static String DISCOUNT_INPUT = "label.label.coupon_label:nth-child(1)";
+    public static String PLACE_ORDER_BTN ="a.button.button-in-cart.check_price_btn";
+    public static String  PAGE_ORDER_INFO ="/html/body/div[1]/div/main/div[1]/div/a[1]";
 
     public void addToCartItems(String value){
         mainPage.inputSearchInput(value);

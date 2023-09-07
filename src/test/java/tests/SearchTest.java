@@ -1,6 +1,5 @@
 package tests;
 
-import io.qameta.allure.Allure;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,11 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.MainPage;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.openqa.selenium.By.xpath;
 import static pages.MainPage.ERROR_FOUND_ITEMS;
@@ -33,7 +28,7 @@ public class SearchTest {
     @ParameterizedTest
     @DisplayName("Проверка поиска по валидным значениям")
     @ValueSource(strings = {"Чехов", " Толстой ", "ПРЕСТУПЛЕНИЕ И НАКАЗАНИЕ", "ТОлсТой", "TolStoy"})
-    public void inputValidSearchValue(String value) throws IOException {
+    public void inputValidSearchValue(String value) {
 
         mainPage.inputSearchInput(value);
         mainPage.clickSearhButton();
@@ -47,7 +42,7 @@ public class SearchTest {
     @ParameterizedTest
     @DisplayName("Проверка поиска по невалидным значениям")
     @ValueSource(strings = {"2231273957295", "  416  860  ", ";%??:(*:%:?;%?:(%", "<script>alert(\"Поле input уязвимо!\")</script>"})
-    public void inputInvalidSearchValue(String value) throws IOException {
+    public void inputInvalidSearchValue(String value)  {
         driver.findElement(xpath(SEARCH_INPUT)).sendKeys(value);
         mainPage.clickSearhButton();
         mainPage.timeOutDuration(10);
@@ -57,7 +52,7 @@ public class SearchTest {
         String error = driver.findElement(By.cssSelector(ERROR_FOUND_ITEMS)).getText();
         mainPage.timeOutDuration(10);
         mainPage.allureScreenshot("Ошибка при вводе невалидного значения в поиск");
-        assertTrue(Objects.equals(error, "0"), "Поиск товара по невалидным данным происходит.");
+        assertEquals("0", error, "Поиск товара по невалидным данным происходит.");
 
 
     }

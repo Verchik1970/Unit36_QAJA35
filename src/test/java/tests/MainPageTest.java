@@ -1,19 +1,13 @@
 package tests;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
+
 import org.junit.jupiter.api.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import pages.MainPage;
-import java.io.ByteArrayInputStream;
-
-import java.util.Objects;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -54,7 +48,7 @@ public class MainPageTest  {
         Select select = new Select(selectElement);
         select.selectByVisibleText("Алтай");
         String city_position = driver.findElement(By.xpath(ALTAY_REGION)).getText();
-        assertTrue(Objects.equals(test_city_value, city_position));
+        assertEquals(test_city_value, city_position, "Выбор города не работает");
     }
 
     @Test
@@ -80,13 +74,9 @@ public class MainPageTest  {
     }
     @Test
     @DisplayName("Проверка, что нажатие на кнопку Корзина ведет на страницу корзины")
-    void basketBTNCheck() throws InterruptedException {
+    void basketBTNCheck() {
         mainPage.basketBtnClick();
-/*
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-*/
         String cart= driver.findElement(By.xpath("//h1[contains(text(),'Корзина')]")).getText();
-
         mainPage.allureScreenshot("Открылась страница корзины");
         assertEquals(cart, "Корзина");
 
