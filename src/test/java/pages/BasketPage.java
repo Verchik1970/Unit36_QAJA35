@@ -6,15 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import static tests.AddToBasketTest.mainPage;
 
 public class BasketPage {
     public static WebDriver driver;
+    public MainPage mainPage;
     public static String value = "Трудно быть богом";
 
-    public BasketPage(WebDriver driver) {
+    public BasketPage(WebDriver driver, MainPage mainPage) {
         BasketPage.driver = driver;
         PageFactory.initElements(driver, this);
+        this.mainPage = mainPage;
     }
 
     public static By BOOK_TITLE_IN_BASKET = By.className("book_title");

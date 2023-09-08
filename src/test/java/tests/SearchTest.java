@@ -7,11 +7,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.MainPage;
 
+import static pages.BasketPage.ITEM_TITLE;
+import static pages.BasketPage.value;
+import static pages.MainPage.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.openqa.selenium.By.xpath;
-import static pages.MainPage.ERROR_FOUND_ITEMS;
-import static pages.MainPage.SEARCH_INPUT;
 
 public class SearchTest {
     private static WebDriver driver;
@@ -53,6 +54,21 @@ public class SearchTest {
         mainPage.timeOutDuration(10);
         mainPage.allureScreenshot("Ошибка при вводе невалидного значения в поиск");
         assertEquals("0", error, "Поиск товара по невалидным данным происходит.");
+
+
+    }
+    @Test
+    @DisplayName("Тест проверят, что найденные товары соответствуют искомой фразе")
+    public void itemTitleAssert() {
+        mainPage.inputSearchInput(value);
+        mainPage.clickSearhButton();
+        mainPage.allureScreenshot("ВВод тестового слова");
+        mainPage.timeOutDuration(5);
+        String title = driver.findElement(ITEM_TITLE).getText();
+        mainPage.allureScreenshot("Найденные книги");
+
+        System.out.println(title + " " + ", a искомая книга " + value);
+        assertEquals(title, value);
 
 
     }

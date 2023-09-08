@@ -38,7 +38,8 @@ public class MainPage {
     public static final By TO_BASKET = By.cssSelector("#add_to_cart");
     public static final By COUNT_BASKET_NOTIFICATION = By.xpath("/html/body/header/div[2]/div/div[2]/a[2]/span");
     public static final By LINK_OLD_SITE = By.xpath("//a[@id='link_old_site']"); // переход на старый сайт
-
+    public static final By FEEDBACK_BTN = By.cssSelector("a.link-icon.link-icon-feedback.header_nav-top_item:nth-child(6)");
+    public static final By FEEDBACK_NAME_PAGE = By.cssSelector("h4.h4.book-order_title:nth-child(1)");
     public MainPage(WebDriver driver) {
         MainPage.driver = driver;
         PageFactory.initElements(driver, this);
@@ -102,6 +103,10 @@ public class MainPage {
 
     public void addToBasket() {
         driver.findElement(TO_BASKET).click();
+    }
+    public void feedbackBtn(){
+        driver.findElement(FEEDBACK_BTN).click();
+
     }
 
 

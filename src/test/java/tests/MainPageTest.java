@@ -85,6 +85,14 @@ public class MainPageTest {
         assertEquals(cart, "Корзина");
 
     }
+    @Test
+    @DisplayName("Проверка, что нажатие на кнопку Обратная связь ведет на страницу Отправить сообщение")
+    void feedbackBTNcheck(){
+        driver.findElement(FEEDBACK_BTN).click();
+        String feedback_name = driver.findElement(FEEDBACK_NAME_PAGE).getText();
+        mainPage.allureScreenshot("Открылась страница корзины");
+        assertEquals(feedback_name, "Обратная связь");
+    }
 
     @AfterEach
     public void tearDown() {
