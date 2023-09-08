@@ -3,8 +3,11 @@ package pages;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.ByteArrayInputStream;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -36,6 +39,9 @@ public class MainPage {
     public static final By CATEGOTY_ELECTROBOOKS = By.cssSelector("#inlinesearch_where_file"); //категория электронные книги
     public static final By CATEGORY_RESULT_EBOOKS = By.cssSelector("a.viewed-items-book.file.viewed-items-book-card");
     public static final By TO_BASKET = By.cssSelector("#add_to_cart");
+
+  public static final By BASKET_BTN1 = By.xpath("//h1[contains(text(),'Корзина')]");
+
     public static final By COUNT_BASKET_NOTIFICATION = By.xpath("/html/body/header/div[2]/div/div[2]/a[2]/span");
     public static final By LINK_OLD_SITE = By.xpath("//a[@id='link_old_site']"); // переход на старый сайт
     public static final By FEEDBACK_BTN = By.cssSelector("a.link-icon.link-icon-feedback.header_nav-top_item:nth-child(6)");
@@ -48,7 +54,11 @@ public class MainPage {
     public void open() {
         driver.get(index);
         driver.manage().window().maximize();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        WebElement popup = wait.until(ExpectedConditions.visibilityOfElementLocated(popUpCloseButton));
+/*
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+*/
         closePopUp();
     }
 

@@ -80,7 +80,7 @@ public class MainPageTest {
     @DisplayName("Проверка, что нажатие на кнопку Корзина ведет на страницу корзины")
     void basketBTNCheck() {
         mainPage.basketBtnClick();
-        String cart = driver.findElement(By.xpath("//h1[contains(text(),'Корзина')]")).getText();
+        String cart = driver.findElement(BASKET_BTN1).getText();
         mainPage.allureScreenshot("Открылась страница корзины");
         assertEquals(cart, "Корзина");
 
