@@ -5,13 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.ByteArrayInputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.net.URL;
-
-import static org.openqa.selenium.By.*;
 
 public class MainPage {
     public static WebDriver driver;

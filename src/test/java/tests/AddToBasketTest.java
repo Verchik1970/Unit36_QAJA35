@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +12,6 @@ import pages.MainPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.openqa.selenium.By.xpath;
 import static pages.BasketPage.*;
 import static pages.MainPage.*;
 
@@ -55,9 +53,9 @@ public class AddToBasketTest {
     @DisplayName("Проверка добавления в корзину выбранного товара")
     public void addItemToBasket() {
         basketPage.addToCartItems(value);
-        String name_item_inbasket = driver.findElement(BOOK_TITLE_IN_BASKET).getText();
-        System.out.println(name_item_inbasket);
-        assertEquals(value, name_item_inbasket, "Добавлена не та книга");
+        String name_item_in_basket = driver.findElement(BOOK_TITLE_IN_BASKET).getText();
+        System.out.println(name_item_in_basket);
+        assertEquals(value, name_item_in_basket, "Добавлена не та книга");
 
     }
 
@@ -87,7 +85,7 @@ public class AddToBasketTest {
 
     @Test
     @DisplayName("Проверка правильного отображения суммы в корзине при увеличении количества товаров")
-    public void checkSuminBasket() {
+    public void checkSumInBasket() {
         basketPage.addToCartItems(value);
         int sum1 = basketPage.stringToIntWithSplit(SUMMA_IN_CART);
         basketPage.replaceValue(CART_INT);
@@ -118,7 +116,7 @@ public class AddToBasketTest {
 
     @Test
     @DisplayName("Проверка при нажатии на кнопку ввести Код - откроется поле для ввода кода скидки")
-    public void dicountBtnCheck() {
+    public void discountBtnCheck() {
         basketPage.addToCartItems(value);
         driver.findElement(DISCOUNT_CODE_BTN).click();
         String discountInput = driver.findElement(DISCOUNT_INPUT).getText();

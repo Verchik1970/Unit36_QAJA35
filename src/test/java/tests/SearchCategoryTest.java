@@ -5,10 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.MainPage;
 
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.openqa.selenium.By.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pages.MainPage.*;
 
 public class SearchCategoryTest {
@@ -38,7 +35,7 @@ public class SearchCategoryTest {
         mainPage.clickSearhButton();
         mainPage.allureScreenshot("Поиск по категории");
         String result = driver.findElement(CATEGORY_RESULT_EBOOKS).getText();
-        assertTrue(Objects.equals(result, "электронная книга"), "Категория не нашлась");
+        assertEquals(result, "электронная книга", "Категория не нашлась");
 
     }
 
