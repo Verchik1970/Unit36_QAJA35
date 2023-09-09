@@ -33,10 +33,8 @@ public class BasketPageTest {
     @BeforeEach
 
     public void setUp() {
-
         mainPage.open();
     }
-
 
     @Test
     @Severity(value = SeverityLevel.NORMAL)
@@ -46,7 +44,6 @@ public class BasketPageTest {
         driver.findElement(DISCOUNT_CODE_BTN).click();
         String discountInput = driver.findElement(DISCOUNT_INPUT).getText();
         assertEquals("Введите DISCODe:", discountInput);
-
     }
 
     @Test
@@ -57,7 +54,6 @@ public class BasketPageTest {
         driver.findElement(DELETE_FROM_CART).click();
         String noItems = driver.findElement(NO_ITEMS_INTHE_CART).getText();
         assertEquals("В корзине ничего нет.", noItems);
-
 
     }
 
@@ -88,7 +84,6 @@ public class BasketPageTest {
 
     @Test
     @Severity(value = SeverityLevel.CRITICAL)
-
     @DisplayName("Проверка что при нажатии на кнопку крестик товары из корзины удалятся")
     public void deleteBtnChoice() {
         basketPage.addToCartItems(value);
@@ -112,8 +107,5 @@ public class BasketPageTest {
 
     @AfterEach
     void tearDown() {
-/*
-        driver.quit();
-*/
     }
 }

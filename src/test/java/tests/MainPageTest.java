@@ -23,7 +23,6 @@ public class MainPageTest {
     private static MainPage mainPage;
 
     @BeforeAll
-
     static void beforeAll() {
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
@@ -36,9 +35,7 @@ public class MainPageTest {
     }
 
     @BeforeEach
-
     public void setUp() {
-
         mainPage.open();
     }
 
@@ -54,7 +51,6 @@ public class MainPageTest {
                 Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(region);
         assertTrue(matcher.find(), myRegion);
-
     }
 
     @Test
@@ -96,7 +92,6 @@ public class MainPageTest {
         System.out.println(regTitle);
         mainPage.allureScreenshot("Открылась страница регистрации");
         assert regTitle.contains("Вход") : "Страница Входа не открылась";
-
     }
 
     @Test
@@ -113,7 +108,7 @@ public class MainPageTest {
     @Test
     @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка, что нажатие на кнопку Обратная связь ведет на страницу Отправить сообщение")
-    void feedbackBTNcheck() {
+    void feedbackBtnCheck() {
         driver.findElement(FEEDBACK_BTN).click();
         String feedback_name = driver.findElement(FEEDBACK_NAME_PAGE).getText();
         mainPage.allureScreenshot("Открылась страница отправки сообщения для обратной связи");
@@ -132,8 +127,6 @@ public class MainPageTest {
 
     @AfterEach
     public void tearDown() {
-/*
-        driver.quit();
-*/
+
     }
 }

@@ -21,8 +21,6 @@ public class FeedbackPageTest {
     private static WebDriver driver;
     public static MainPage mainPage;
     private static FeedbackPage feedbackPage;
-
-
     @BeforeAll
     static void beforeAll() {
         driver = new ChromeDriver();
@@ -30,16 +28,13 @@ public class FeedbackPageTest {
         feedbackPage = new FeedbackPage(driver, mainPage);
         mainPage.open();
     }
-
     @AfterAll
     static void afterAll() {
         driver.quit();
     }
 
     @BeforeEach
-
     public void setUp() {
-
         mainPage.open();
     }
 
@@ -51,12 +46,10 @@ public class FeedbackPageTest {
         String name = feedbackPage.getAttributeNamePrint(NAME_INPUT, "placeholder");
         String phone = feedbackPage.getAttributeNamePrint(PHONE_INPUT, "placeholder");
         mainPage.scrollPage(driver, 0, 137);
-
         String email = feedbackPage.getAttributeNamePrint(EMAIL_INPUT, "placeholder");
         assertFalse(name.isEmpty(), "Пустой placeholder");
         assertFalse(phone.isEmpty(), "Пустой placeholder");
         assertFalse(email.isEmpty(), "Пустой placeholder");
-
     }
 
     @Test
@@ -64,7 +57,7 @@ public class FeedbackPageTest {
     @DisplayName("Проверка что отправка сообщения без ввода капчи невозможна")
     void sendMessageValid() {
         mainPage.feedbackBtn();
-        feedbackPage.sendTestMessageInput(NAME_INPUT, "Vasiua Pupkin");
+        feedbackPage.sendTestMessageInput(NAME_INPUT, "Vasia Pupkin");
         feedbackPage.sendTestMessageInput(PHONE_INPUT, "+79111237843");
         feedbackPage.sendTestMessageInput(EMAIL_INPUT, "vvv@bbbb.ru");
         feedbackPage.sendTestMessageInput(TEXT_MESSAGE_INPUT, "Test message");
@@ -77,13 +70,9 @@ public class FeedbackPageTest {
         assertEquals("Пройдите проверку \"Я не робот\"", alertText);
         alert.accept();
 
-
     }
 
     @AfterEach
     void tearDown() {
-/*
-        driver.quit();
-*/
     }
 }

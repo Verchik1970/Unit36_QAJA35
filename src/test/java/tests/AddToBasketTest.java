@@ -47,9 +47,8 @@ public class AddToBasketTest {
     @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка, что после добавления товара, на корзине появляется значок уведомления")
     public void addToBasketNotification() {
-
         mainPage.inputSearchInput(value);
-        mainPage.clickSearhButton();
+        mainPage.clickSearchButton();
         mainPage.addToBasket();
         mainPage.timeOutDuration(5);
         mainPage.scrollPage(driver, 0, 0);
@@ -58,21 +57,18 @@ public class AddToBasketTest {
         String countText = element.getText().trim();
         System.out.println(countText);
         int count = Integer.parseInt(countText);
-
         assertTrue(count >= 1, "Товар в корзину не добавлен");
 
     }
 
     @Test
     @Severity(value = SeverityLevel.CRITICAL)
-
     @DisplayName("Проверка добавления в корзину выбранного товара")
     public void addItemToBasket() {
         basketPage.addToCartItems(value);
         String name_item_in_basket = driver.findElement(BOOK_TITLE_IN_BASKET).getText();
         System.out.println(name_item_in_basket);
         assertEquals(value, name_item_in_basket, "Добавлена не та книга");
-
     }
 
     @Test
@@ -85,15 +81,11 @@ public class AddToBasketTest {
         String count_notif = driver.findElement(COUNT_BASKET_NOTIFICATION).getText();
         System.out.println(count_notif);
         assertEquals(int_in_cart, count_notif, "Количество товара разное");
-
-
     }
 
 
     @AfterEach
     void tearDown() {
-/*
-        driver.quit();
-*/
+
     }
 }

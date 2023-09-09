@@ -10,13 +10,10 @@ import java.net.URL;
 import static io.restassured.RestAssured.given;
 
 public class GetRequestOldSiteTest {
-
     URL url = new URL("https://new.books.ru/");
-
 
     public GetRequestOldSiteTest() throws MalformedURLException {
     }
-
 
     @Test
     @Severity(value = SeverityLevel.NORMAL)

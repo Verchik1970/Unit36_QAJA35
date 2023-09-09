@@ -21,7 +21,6 @@ public class SearchTest {
     private static MainPage mainPage;
 
     @BeforeAll
-
     static void beforeAll() {
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
@@ -34,9 +33,7 @@ public class SearchTest {
     }
 
     @BeforeEach
-
     public void setUp() {
-
         mainPage.open();
     }
 
@@ -46,10 +43,8 @@ public class SearchTest {
     @DisplayName("Проверка поиска по валидным значениям")
     @ValueSource(strings = {"Чехов", " Толстой ", "ПРЕСТУПЛЕНИЕ И НАКАЗАНИЕ", "ТОлсТой", "TolStoy"})
     public void inputValidSearchValue(String value) {
-
         mainPage.inputSearchInput(value);
-        mainPage.clickSearhButton();
-
+        mainPage.clickSearchButton();
         mainPage.timeOutDuration(10);
         mainPage.allureScreenshot("ВВод тестового слова");
         mainPage.clearSearchInput();
@@ -62,11 +57,10 @@ public class SearchTest {
     @ValueSource(strings = {"2231273957295", "  416  860  ", ";%??:(*:%:?;%?:(%", "<script>alert(\"Поле input уязвимо!\")</script>"})
     public void inputInvalidSearchValue(String value) {
         driver.findElement(SEARCH_INPUT).sendKeys(value);
-        mainPage.clickSearhButton();
+        mainPage.clickSearchButton();
         mainPage.timeOutDuration(10);
         mainPage.allureScreenshot("ВВод тестового слова");
-
-        mainPage.clearSearchInput();
+       mainPage.clearSearchInput();
         String error = driver.findElement(ERROR_FOUND_ITEMS).getText();
         mainPage.timeOutDuration(10);
         mainPage.allureScreenshot("Ошибка при вводе невалидного значения в поиск");
@@ -80,14 +74,12 @@ public class SearchTest {
     @DisplayName("Тест проверят, что найденные товары соответствуют искомой фразе")
     public void itemTitleAssert() {
         mainPage.inputSearchInput(value);
-        mainPage.clickSearhButton();
+        mainPage.clickSearchButton();
         mainPage.allureScreenshot("ВВод тестового слова");
         mainPage.timeOutDuration(5);
         String title = driver.findElement(ITEM_TITLE).getText();
         mainPage.scrollPage(driver, 0, 137);
-
         mainPage.allureScreenshot("Найденные книги");
-
         System.out.println(title + " " + ", a искомая книга " + value);
         assertEquals(title, value);
 
@@ -96,6 +88,5 @@ public class SearchTest {
 
     @AfterEach
     void tearDown() {
-        /* driver.quit();*/
     }
 }
