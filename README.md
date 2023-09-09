@@ -1,6 +1,7 @@
 # Unit36_QAJA35
 Testing website BOOKS.RU 
-# Тестирование сайта SHOPILAND.RU 
+# Тестирование сайта (https://www.books.ru/)
+
 Произведеные тесты:
 1. SortingReitingTest.java
    - Проверка правильности сортировки товаров по рейтингу;
@@ -29,7 +30,7 @@ mvn allure:serve
 
 
 ### Требования
-Для установки и запуска проекта, необходим Selenium, Junit Jupiter, Allure, Maven 
+Для установки и запуска проекта, необходимы Java, Chrome, Selenium, Junit, Allure, Maven 
 ### Тестирование производилось на:
 OS.version=Windows 10
 JDK.version=jdk20.0.2
@@ -44,4 +45,4 @@ selenium.version =4.11
 
 
 ## Тестирование
-Проект можно запускать потестово и поклассово из среды разработки Inteliji Idea 
+Проект можно запускать потестово и поклассово из среды разработки Intelliji Idea 
