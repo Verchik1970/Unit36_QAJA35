@@ -1,9 +1,10 @@
 # Unit36_QAJA35
 Testing website BOOKS.RU 
 # Тестирование сайта (https://www.books.ru/)
+В репозитории представленны тесты для вебсайта 
 
 Произведеные тесты:
-1. SortingReitingTest.java
+1. AddToBasketTest.java
    - Проверка правильности сортировки товаров по рейтингу;
    - Проверка правильности сортировки товаров по брендам;
 2. SortingTest.java
