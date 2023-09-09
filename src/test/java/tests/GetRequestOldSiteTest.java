@@ -1,9 +1,8 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.MainPage;
@@ -19,10 +18,22 @@ public class GetRequestOldSiteTest {
     private static MainPage mainPage;
     URL url = new URL("https://new.books.ru/");
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    static void beforeAll() {
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
+        mainPage.init();
+    }
+
+    @AfterAll
+    static void afterAll() {
+        driver.quit();
+    }
+
+    @BeforeEach
+
+    public void setUp() {
+
         mainPage.open();
     }
 
@@ -36,10 +47,13 @@ public class GetRequestOldSiteTest {
 
     @AfterEach
     void tearDown() {
+/*
         driver.quit();
+*/
     }
 
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка кода ответа старого сайта")
     public void testGetRequest() {
         given()

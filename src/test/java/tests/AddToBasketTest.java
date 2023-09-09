@@ -1,9 +1,8 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,22 +17,34 @@ import static pages.MainPage.*;
 
 
 public class AddToBasketTest {
-    private WebDriver driver;
+    private static WebDriver driver;
     public static MainPage mainPage;
-    private BasketPage basketPage;
-    public FeedbackPage feedbackPage;
+    private static BasketPage basketPage;
+    public static FeedbackPage feedbackPage;
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    static void beforeAll() {
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
         basketPage = new BasketPage(driver, mainPage);
-        feedbackPage= new FeedbackPage(driver, mainPage);
+        feedbackPage = new FeedbackPage(driver, mainPage);
         mainPage.open();
     }
 
+    @AfterAll
+    static void afterAll() {
+        driver.quit();
+    }
+
+    @BeforeEach
+
+    public void setUp() {
+
+        mainPage.open();
+    }
 
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка, что после добавления товара, на корзине появляется значок уведомления")
     public void addToBasketNotification() {
 
@@ -53,6 +64,8 @@ public class AddToBasketTest {
     }
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+
     @DisplayName("Проверка добавления в корзину выбранного товара")
     public void addItemToBasket() {
         basketPage.addToCartItems(value);
@@ -63,6 +76,7 @@ public class AddToBasketTest {
     }
 
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка соответствия количества добавленного товара и значку уведомлений")
     public void countItemInBasket() {
         basketPage.addToCartItems(value);
@@ -78,6 +92,8 @@ public class AddToBasketTest {
 
     @AfterEach
     void tearDown() {
+/*
         driver.quit();
+*/
     }
 }

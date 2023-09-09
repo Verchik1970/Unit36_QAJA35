@@ -1,9 +1,8 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.BasketPage;
@@ -14,19 +13,33 @@ import static pages.BasketPage.*;
 
 
 public class BasketPageTest {
-    private WebDriver driver;
+    private static WebDriver driver;
     public static MainPage mainPage;
-    private BasketPage basketPage;
+    private static BasketPage basketPage;
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    static void beforeAll() {
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
         basketPage = new BasketPage(driver, mainPage);
         mainPage.open();
     }
 
+    @AfterAll
+    static void afterAll() {
+        driver.quit();
+    }
+
+    @BeforeEach
+
+    public void setUp() {
+
+        mainPage.open();
+    }
+
+
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка при нажатии на кнопку ввести Код - откроется поле для ввода кода скидки")
     public void discountBtnCheck() {
         basketPage.addToCartItems(value);
@@ -35,7 +48,9 @@ public class BasketPageTest {
         assertEquals("Введите DISCODe:", discountInput);
 
     }
+
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
     @DisplayName("Проверка что при нажатии на кнопку Очистить корзину - товары удаляются из корзины")
     public void deleteFromBasket() {
         basketPage.addToCartItems(value);
@@ -47,6 +62,7 @@ public class BasketPageTest {
     }
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
     @DisplayName("Проверка правильного отображения суммы в корзине при увеличении количества товаров")
     public void checkSumInBasket() {
         basketPage.addToCartItems(value);
@@ -55,19 +71,24 @@ public class BasketPageTest {
         mainPage.timeOutDuration(2);
         driver.findElement(RECOUNT).click();
         int sum2 = basketPage.stringToIntWithSplit(SUMMA_IN_CART);
+        mainPage.allureScreenshot("Итоговая сумма");
         assertEquals(sum1 * 3, sum2, "Итоговая сумма не изменилась ");
     }
 
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка возможности отложить товар из корзины")
     public void postponeItems() {
         basketPage.addToCartItems(value);
         basketPage.clickBTN(POSTPONE_BTN);
         String noItems = driver.findElement(NO_ITEMS_INTHE_CART).getText();
+        mainPage.allureScreenshot("Нет товаров в корзине");
         assertEquals("В корзине ничего нет.", noItems);
     }
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+
     @DisplayName("Проверка что при нажатии на кнопку крестик товары из корзины удалятся")
     public void deleteBtnChoice() {
         basketPage.addToCartItems(value);
@@ -79,6 +100,7 @@ public class BasketPageTest {
 
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
     @DisplayName("Кнопка Оформить заказ вызывает страницу оформления заказа ")
     public void placeOrder() {
         basketPage.addToCartItems(value);
@@ -90,6 +112,8 @@ public class BasketPageTest {
 
     @AfterEach
     void tearDown() {
+/*
         driver.quit();
+*/
     }
 }

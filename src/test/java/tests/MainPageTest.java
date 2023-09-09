@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.*;
 
 import org.openqa.selenium.*;
@@ -17,18 +19,30 @@ import static pages.MainPage.*;
 
 public class MainPageTest {
     private static WebDriver driver;
-    private MainPage mainPage;
+    private static MainPage mainPage;
 
+    @BeforeAll
+
+    static void beforeAll() {
+        driver = new ChromeDriver();
+        mainPage = new MainPage(driver);
+        mainPage.init();
+    }
+
+    @AfterAll
+    static void afterAll() {
+        driver.quit();
+    }
 
     @BeforeEach
 
     public void setUp() {
-        driver = new ChromeDriver();
-        mainPage = new MainPage(driver);
+
         mainPage.open();
     }
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
     @DisplayName("Проверка работы кнопки выбора региона доставки")
     public void choiceCity() {
         driver.findElement(CHOICE_CITY_BUTTON).click();
@@ -41,6 +55,7 @@ public class MainPageTest {
     }
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
     @DisplayName("Проверка, что кнопка выбора местоположения позволяет выбрать нужный город и регион доставки")
     public void selectCityButton() {
         choiceCity();
@@ -48,13 +63,16 @@ public class MainPageTest {
         driver.findElement(DROPDOWN_CITIES).click(); // выпадающий список
         driver.findElement(CITY_LOCATION).click();
         WebElement selectElement = driver.findElement(RUSSIA_CITIES_CHANGE);
+        mainPage.timeOutDuration(4);
         Select select = new Select(selectElement);
         select.selectByVisibleText("Алтай");
         String city_position = driver.findElement(ALTAY_REGION).getText();
+        mainPage.allureScreenshot("Выбран город и регион доставки");
         assertEquals(test_city_value, city_position, "Выбор города не работает");
     }
 
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка, что кнопка ПОМОЩЬ открывает страницу со справочными материалами")
     public void help_btn() {
         driver.findElement(HELP_BTN).click();
@@ -66,6 +84,7 @@ public class MainPageTest {
 
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
     @DisplayName("Проверка, что нажатие на кнопку Вход ведет на страницу регистрации и входа")
     void registrationBTN() {
         mainPage.registrationBtnClick();
@@ -77,6 +96,7 @@ public class MainPageTest {
     }
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
     @DisplayName("Проверка, что нажатие на кнопку Корзина ведет на страницу корзины")
     void basketBTNCheck() {
         mainPage.basketBtnClick();
@@ -85,17 +105,21 @@ public class MainPageTest {
         assertEquals(cart, "Корзина");
 
     }
+
     @Test
+    @Severity(value = SeverityLevel.NORMAL)
     @DisplayName("Проверка, что нажатие на кнопку Обратная связь ведет на страницу Отправить сообщение")
-    void feedbackBTNcheck(){
+    void feedbackBTNcheck() {
         driver.findElement(FEEDBACK_BTN).click();
         String feedback_name = driver.findElement(FEEDBACK_NAME_PAGE).getText();
-        mainPage.allureScreenshot("Открылась страница корзины");
+        mainPage.allureScreenshot("Открылась страница отправки сообщения для обратной связи");
         assertEquals(feedback_name, "Обратная связь");
     }
 
     @AfterEach
     public void tearDown() {
+/*
         driver.quit();
+*/
     }
 }

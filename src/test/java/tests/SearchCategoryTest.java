@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,10 +14,23 @@ public class SearchCategoryTest {
     private static WebDriver driver;
     private static MainPage mainPage;
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+
+    static void beforeAll() {
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
+        mainPage.init();
+    }
+
+    @AfterAll
+    static void afterAll() {
+        driver.quit();
+    }
+
+    @BeforeEach
+
+    public void setUp() {
+
         mainPage.open();
     }
 
@@ -23,6 +38,8 @@ public class SearchCategoryTest {
     final String value = "Трудно быть богом";
 
     @Test
+    @Severity(value = SeverityLevel.CRITICAL)
+
     @DisplayName("Проверка поиска по категориям")
     public void CategorySearchValue() {
         mainPage.inputSearchInput(value);
@@ -41,7 +58,7 @@ public class SearchCategoryTest {
 
     @AfterEach
     public void tearDown() {
-        driver.quit();
+        /* driver.quit();*/
     }
 
 }

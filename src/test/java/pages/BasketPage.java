@@ -21,7 +21,7 @@ public class BasketPage {
     public static By BOOK_TITLE_IN_BASKET = By.className("book_title");
     public static By CART_INT = By.id("cart_cnt_id"); //количество товара в корзине
     public static By SUMMA_IN_CART = By.cssSelector("h4.h4.check_price-value"); //сумма в корзине
-    public static By RECOUNT = By.cssSelector( "button.button.button-order:nth-child(2)");
+    public static By RECOUNT = By.cssSelector("button.button.button-order:nth-child(2)");
     public static By POSTPONE_BTN = By.cssSelector("a.dotted-link:nth-child(2)");
     public static By NO_ITEMS_INTHE_CART = By.cssSelector("div.col_1 ");
     public static By DELETE_FROM_CART = By.cssSelector("a.dotted-link:nth-child(3)");
@@ -32,6 +32,7 @@ public class BasketPage {
     public static By PAGE_ORDER_INFO = By.xpath("/html/body/div[1]/div/main/div[1]/div/a[1]");
 
     public static By ITEM_TITLE = By.cssSelector(" a.custom-link.book-catalog_item_title ");
+
     public void addToCartItems(String value) {
         mainPage.inputSearchInput(value);
         mainPage.clickSearhButton();
