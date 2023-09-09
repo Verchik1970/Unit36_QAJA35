@@ -23,7 +23,7 @@ Testing website BOOKS.RU
 
 3. FeedbackPageTest.java
     - Проверка наличия placeholder в полях ввода формы обратной связи;
-    - Проверка? что отправка сообщения без ввода капчи невозможна;
+    - Проверка, что отправка сообщения без ввода капчи невозможна;
 
 4. GetRequestOldSiteTest.java
     - Проверка кода ответа старого сайта;
@@ -49,9 +49,9 @@ Testing website BOOKS.RU
 
 ## Использование
 Запуск SUITE тестов из Terminal:
-mvn clean test
+- mvn clean test
 Запуск Allure отчета:
-mvn allure:serve
+- mvn allure:serve
 
 
 ### Требования
