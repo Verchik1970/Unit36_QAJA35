@@ -67,10 +67,6 @@ public class FeedbackPageTest {
         feedbackPage.sendTestMessageInput(NAME_INPUT, "Vasiua Pupkin");
         feedbackPage.sendTestMessageInput(PHONE_INPUT, "+79111237843");
         feedbackPage.sendTestMessageInput(EMAIL_INPUT, "vvv@bbbb.ru");
-/*
-        mainPage.scrollPage(driver, 0, 100);
-*/
-
         feedbackPage.sendTestMessageInput(TEXT_MESSAGE_INPUT, "Test message");
         driver.findElement(CHECKBOX_NOT_ORDER).click();
         driver.findElement(SEND_MESSAGE).click();

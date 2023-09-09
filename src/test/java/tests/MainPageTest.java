@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.*;
@@ -9,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import pages.MainPage;
 
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,9 +43,11 @@ public class MainPageTest {
         mainPage.open();
     }
 
+    @Owner("Vera Razvarina")
     @Test
     @Severity(value = SeverityLevel.CRITICAL)
-    @DisplayName("Проверка работы кнопки выбора региона доставки")
+    @DisplayName("Проверка,что при нажатии кнопки выбора региона доставки " +
+            "открывается всплывающее окно выбора региона ")
     public void choiceCity() {
         driver.findElement(CHOICE_CITY_BUTTON).click();
         String region = driver.findElement(REGION_NAME).getText();
@@ -56,7 +60,8 @@ public class MainPageTest {
 
     @Test
     @Severity(value = SeverityLevel.CRITICAL)
-    @DisplayName("Проверка, что кнопка выбора местоположения позволяет выбрать нужный город и регион доставки")
+    @DisplayName("Проверка, что кнопка выбора местоположения позволяет" +
+            " выбрать нужный город и регион доставки")
     public void selectCityButton() {
         choiceCity();
         driver.findElement(CHANGE_BUTTON_CITY).click(); //кнопка изменить
@@ -114,6 +119,16 @@ public class MainPageTest {
         String feedback_name = driver.findElement(FEEDBACK_NAME_PAGE).getText();
         mainPage.allureScreenshot("Открылась страница отправки сообщения для обратной связи");
         assertEquals(feedback_name, "Обратная связь");
+    }
+
+    @Test
+    @Severity(value = SeverityLevel.MINOR)
+    @DisplayName("Проверка что при нажатии на кнопку Перейти на старый сайт - открывается старый сайт")
+    void getLinkOldSite() {
+        driver.findElement(LINK_OLD_SITE).click();
+        String newSite = driver.getCurrentUrl();
+        assertEquals("https://new.books.ru/", newSite);
+
     }
 
     @AfterEach

@@ -77,7 +77,7 @@ public class AddToBasketTest {
 
     @Test
     @Severity(value = SeverityLevel.NORMAL)
-    @DisplayName("Проверка соответствия количества добавленного товара и значку уведомлений")
+    @DisplayName("Проверка соответствия количества добавленного товара числу на значке уведомлений")
     public void countItemInBasket() {
         basketPage.addToCartItems(value);
         String int_in_cart = driver.findElement(CART_INT).getAttribute("value");
