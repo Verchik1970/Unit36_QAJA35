@@ -3,15 +3,11 @@ package tests;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.MainPage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import static io.restassured.RestAssured.given;
-import static pages.MainPage.*;
 
 public class GetRequestOldSiteTest {
 
