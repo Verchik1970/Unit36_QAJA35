@@ -50,6 +50,7 @@ Testing website BOOKS.RU
 ## Использование
 Запуск SUITE тестов из Terminal:
 - mvn clean test
+
 Запуск Allure отчета:
 - mvn allure:serve
 
