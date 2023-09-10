@@ -61,6 +61,7 @@ Testing website BOOKS.RU
 
 Запуск Allure отчета:
 - mvn allure:serve
+  
 ![Allure](https://github.com/Verchik1970/Unit36_QAJA35/blob/master/Screenshot_38.png)
 
 ### Требования
