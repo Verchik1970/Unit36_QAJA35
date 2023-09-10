@@ -15,6 +15,7 @@ public class MainPage {
     public static WebDriver driver;
 
     final String index = "https://books.ru/";
+    public static final By MAIN_LOGO = By.cssSelector("a.header_logo:nth-child(1)");
 
     public static final By popUpCloseButton = By.xpath("//div[@class='closeX']");
     public static final By SEARCH_INPUT = By.xpath("//header/div[2]/div[1]/div[1]/form[1]/input[2]");

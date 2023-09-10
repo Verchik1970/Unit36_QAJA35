@@ -16,11 +16,13 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pages.FeedbackPage.*;
+import static pages.MainPage.MAIN_LOGO;
 
 public class FeedbackPageTest {
     private static WebDriver driver;
     public static MainPage mainPage;
     private static FeedbackPage feedbackPage;
+
     @BeforeAll
     static void beforeAll() {
         driver = new ChromeDriver();
@@ -28,6 +30,7 @@ public class FeedbackPageTest {
         feedbackPage = new FeedbackPage(driver, mainPage);
         mainPage.open();
     }
+
     @AfterAll
     static void afterAll() {
         driver.quit();
@@ -70,6 +73,18 @@ public class FeedbackPageTest {
         assertEquals("Пройдите проверку \"Я не робот\"", alertText);
         alert.accept();
 
+    }
+
+    @Test
+    @Severity(value = SeverityLevel.NORMAL)
+    @DisplayName("Проверка возможности вернуться на главную страницу сайта " +
+            "нажав на кнопку Лого магазина")
+    void returnBack() {
+        mainPage.feedbackBtn();
+        driver.findElement(MAIN_LOGO).click();
+        String main = driver.getCurrentUrl();
+        System.out.println(main);
+        assertEquals("https://www.books.ru/", main);
     }
 
     @AfterEach
