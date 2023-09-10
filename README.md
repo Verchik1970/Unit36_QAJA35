@@ -61,7 +61,7 @@ Testing website BOOKS.RU
 
 Запуск Allure отчета:
 - mvn allure:serve
-
+![Allure](https://github.com/Verchik1970/Unit36_QAJA35/blob/master/Screenshot_38.png)
 
 ### Требования
 
@@ -80,7 +80,7 @@ Testing website BOOKS.RU
 ### Установка зависимостей
 Все зависимости отображены в pom.xml файле
 ```
-![alt allure](https://github.com/Verchik1970/Unit36_QAJA35/blob/master/Screenshot_38.png)
+
 ## Тестирование
 
 Проект можно запускать потестово и поклассово из среды разработки Intelliji Idea 
