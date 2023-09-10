@@ -80,7 +80,7 @@ Testing website BOOKS.RU
 ### Установка зависимостей
 Все зависимости отображены в pom.xml файле
 ```
-<img height="406" src="E:\Idea\Projects_Vera\Unit36_QAJA35\Screenshot_38.png" width="800"/>
+![]https://github.com/Verchik1970/Unit36_QAJA35/blob/master/Screenshot_38.png
 ## Тестирование
 
 Проект можно запускать потестово и поклассово из среды разработки Intelliji Idea 
